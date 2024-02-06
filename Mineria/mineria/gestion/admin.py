@@ -2,7 +2,13 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin, GroupAdmin
 from django.contrib.auth.models import User, Group
-from gestion.models import Mineral, Transporte, Destino, Envio, Conductor, Inspeccion
+from mineria_00.models import Mineral
+from transporte_01.models import Transporte
+from destino_02.models import Destino
+from envio_03.models import Envio
+from conductor_04.models import Conductor
+from inspeccion_05.models import Inspeccion
+
 
 class MyAdminSite(admin.AdminSite):
     site_header = 'Mi sitio de administración'
