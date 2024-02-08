@@ -2,14 +2,23 @@
 {% extends "base.html" %}
 
 {% block title %}
-Mi Página
+transporte
 {% endblock %}
 
 {% block content %}
-
+<br>
+<br><br>
+<br>
+<br>
+<br>
+{% for contenido in transportes  %}
     <section>
-        <button class="btn btn-primary">Un botón</button>
+        <h1>{{contenido.matricula}}</h1>
+        <h1>{{contenido.tipo_transporte}}</h1>
+        <h1>{{contenido.capacidad_carga}}</h1>
+        <h1>{{contenido.fecha_mantenimiento}}</h1>
     </section>
+{% endfor %}
    
 
 {% endblock %}

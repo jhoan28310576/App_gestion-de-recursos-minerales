@@ -2,15 +2,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-Mi Página
+Mineria
 {% endblock %}
 
 {% block content %}
-
+<br>
+<br><br>
+<br>
+<br>
+<br>
+{% for contenido in mineral  %}
     <section>
-        <h1>Mi primer encabezado</h1>
-        <p>Mi primer párrafo.</p>
+        <h1>{{contenido.nombre}}</h1>
+        <h1>{{contenido.lugar_extraccion}}</h1>
+        <h1>{{contenido.peso}}</h1>
+        <h1>{{contenido.pureza}}</h1>
     </section>
-   
+{% endfor %}
 
 {% endblock %}

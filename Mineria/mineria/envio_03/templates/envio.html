@@ -1,14 +1,25 @@
 {% extends "base.html" %}
 
 {% block title %}
-Mi Página
+Envios
 {% endblock %}
 
 {% block content %}
 
+<br>
+<br><br>
+<br>
+<br>
+<br>
+{% for contenido in envios  %}
     <section>
-        <button class="btn btn-primary">Un botón</button>
+        <h1>{{contenido.mineral}}</h1>
+        <h1>{{contenido.transporte}}</h1>
+        <h1>{{contenido.destino}}</h1>
+        <h1>{{contenido.fecha_envio}}</h1>
+        <h1>{{contenido.cantidad_mineral}}</h1>
     </section>
+{% endfor %} 
    
 
 {% endblock %}

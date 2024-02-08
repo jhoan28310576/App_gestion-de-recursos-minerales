@@ -2,14 +2,24 @@
 {% extends "base.html" %}
 
 {% block title %}
-Mi Página
+destino
 {% endblock %}
 
 {% block content %}
 
+<br>
+<br><br>
+<br>
+<br>
+<br>
+{% for contenido in destinos %}
     <section>
-        <button class="btn btn-primary">Un botón</button>
+        <h1>{{contenido.estado}}</h1>
+        <h1>{{contenido.ciudad}}</h1>
+        <h1>{{contenido.direccion}}</h1>
     </section>
+{% endfor %}
+
    
 
 {% endblock %}
