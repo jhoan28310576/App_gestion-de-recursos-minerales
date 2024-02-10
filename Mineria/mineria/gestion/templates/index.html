@@ -10,58 +10,55 @@
 <div class="container marketing">
 
   <!-- Three columns of text below the carousel -->
-  <div class="row">
-    {% for contenido in gestion %}
-      <div class="col-lg-4">
-        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="{{contenido.image.url}}" role="img" aria-label="Imagen" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <h2 class="fw-normal">{{contenido.title}}</h2>
-        <p>{{contenido.description|safe|truncatewords:10 }}</p>
-        <p><a class="btn btn-secondary" href="#">View details »</a></p>
-      </div><!-- /.col-lg-4 -->
-    {% endfor %}
-  </div><!-- /.row -->
-    
-
-
+  <div class="container">
+    <div class="row justify-content-center">
+        {% for gestions in gestion %}
+            <div class="col-lg-4 text-center">
+                <img class="rounded-circle" src="{{ gestions.image.url }}" alt="Imagen" width="140" height="140">
+                <h2>{{ gestions.title }}</h2>
+                <p>{{ gestions.description|safe|truncatewords:10 }}</p>
+                <p><a class="btn btn-secondary" href="#" role="button">Ver detalles »</a></p>
+            </div><!-- /.col-lg-4 -->
+        {% endfor %}
+    </div>
+</div>
 
   <!-- START THE FEATURETTES -->
-
-  <hr class="featurette-divider">
-
-  {% for contenidoo in individuall %}
-  <hr class="featurette-divider">
-  <div class="row featurette">
+ <hr class="featurette-divider">
+ {% if gestion %}
+  <div class="row featurette"> 
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">{{contenidoo.title}}</h2>
-      <p class="lead">{{contenidoo.description|safe}}</p>
+      <h2 class="featurette-heading">{{ gestion.0.title }}</span></h2>
+      <p class="lead">{{ gestion.0.description|safe }}</p>
     </div>
     <div class="col-md-5">
-      <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{{contenidoo.image.url}}" role="img" aria-label="Imagen" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="{{gestion.2.image.url}}" data-holder-rendered="true" style="width: 500px; height: 500px;">
     </div>
   </div>
-  {% endfor %}
+  {% endif %}
 
   <hr class="featurette-divider">
 
+  {% if gestion %}
   <div class="row featurette">
     <div class="col-md-7 order-md-2">
-      <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
-      <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      <h2 class="featurette-heading">{{gestion.1.title}}</h2>
+      <p class="lead">{{gestion.1.description|safe}}</p>
     </div>
     <div class="col-md-5 order-md-1">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="{{gestion.1.image.url}} " data-holder-rendered="true" style="width: 500px; height: 500px;">
     </div>
   </div>
-
+  {% endif %}
   <hr class="featurette-divider">
 
   <div class="row featurette">
     <div class="col-md-7">
-      <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
-      <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      <h2 class="featurette-heading">{{gestion.2.title}}</h2>
+      <p class="lead">{{gestion.2.description|safe}}</p>
     </div>
     <div class="col-md-5">
-      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+      <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" src="{{gestion.2.image.url}}">
     </div>
   </div>
 
@@ -70,7 +67,6 @@
   <!-- /END THE FEATURETTES -->
 
 </div>
-
 
 {% endblock %}
 
