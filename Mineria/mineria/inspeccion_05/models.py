@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 from envio_03.models import Envio
 
 # Create your models here.
@@ -6,7 +7,7 @@ from envio_03.models import Envio
 class Inspeccion(models.Model):#6
     envio = models.ForeignKey(Envio, on_delete=models.CASCADE)
     fecha_inspeccion = models.DateTimeField(auto_now_add=True)
-    resultado = models.CharField(max_length=200)
+    resultado = RichTextField()
     
     class Meta:
         db_table = 'Inspeccion'

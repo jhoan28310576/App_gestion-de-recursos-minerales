@@ -23,7 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin_site.urls),
     path('gestion/', include('gestion.urls')),  
-    path('mineria/', include('mineria_00.urls')), 
+    path('mineral_create_view/', include('mineria_00.urls')), 
     path('transporte/', include('transporte_01.urls')), 
     path('destino/', include('destino_02.urls')), 
     path('envio/', include('envio_03.urls')), 

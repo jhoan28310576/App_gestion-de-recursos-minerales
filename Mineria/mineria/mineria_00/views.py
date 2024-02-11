@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from .models import Mineral
+from .forms  import Mineralform 
+from django.contrib import messages
+
 # Create your views here.
-def mineria(request):
-    mineria = Mineral.objects.all()
-    return render (request, "mineria.html",{"mineral":mineria})
+def mineral_create_view (request):
+    form = Mineralform(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Mineral guardado con exito')
+    return render(request, 'mineria.html', {'form': form})
+   
