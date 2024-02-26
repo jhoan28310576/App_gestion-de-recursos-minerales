@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from .models import Transporte
+from .forms import Transporteform
+from  django.contrib import messages
 # Create your views here
 def transporte(request):
-    transporte = Transporte.objects.all()
+    transporte = Transporteform(request.POST or None)
+    if transporte.is_valid():
+        transporte.save()
+        messages.success(request, 'Transporte guardado con exito')
     return render(request,'transporte.html',{"transportes":transporte})

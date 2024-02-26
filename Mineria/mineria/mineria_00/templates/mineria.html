@@ -5,6 +5,7 @@ Mineria
 {% endblock %}
 
 {% block content %}
+<br>
 
 <div class="container marketing">
 {% if messages %}
@@ -12,11 +13,10 @@ Mineria
         <script>alert("{{ message }}");</script>
     {% endfor %}
 {% endif %}
-
+<div class="card_form">
 <form method="POST">
     {% csrf_token %}
     {% for field in form %}
-    <br>
     <br>
     <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
@@ -31,11 +31,13 @@ Mineria
     <br>
     <br>
     {% endfor %}
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary btn-centrado">Guardar</button>
 </form>
 </div>
+<!-- Fin de la tarjeta -->
+</div>
 <br>
-<br>
+
 {% endblock %}
 
 
