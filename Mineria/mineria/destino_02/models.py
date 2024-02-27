@@ -4,9 +4,9 @@ from django.db import models
 # Create your models here.
 
 class Destino(models.Model):#3
-    estado = models.CharField(max_length=200)
-    ciudad = models.CharField(max_length=200)
-    direccion = models.CharField(max_length=200)
+    estado = models.CharField(max_length=200, blank=False)
+    ciudad = models.CharField(max_length=200, blank=False)
+    direccion = models.CharField(max_length=200, blank=False)
     class Meta:
         db_table = 'Destino'
         verbose_name = 'Destino'

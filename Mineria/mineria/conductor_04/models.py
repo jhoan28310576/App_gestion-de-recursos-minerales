@@ -4,9 +4,9 @@ from transporte_01.models import Transporte
 # Create your models here.
 
 class Conductor(models.Model):#5
-    nombre = models.CharField(max_length=200)
-    licencia = models.CharField(max_length=200)
-    transporte = models.ForeignKey(Transporte, on_delete=models.CASCADE)
+    nombre = models.CharField(max_length=200, blank=False)
+    licencia = models.CharField(max_length=200, blank=False)
+    transporte = models.ForeignKey(Transporte, on_delete=models.CASCADE, blank=False)
     
     class Meta:
         db_table = 'Conductor'

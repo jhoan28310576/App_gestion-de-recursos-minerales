@@ -5,9 +5,9 @@ from envio_03.models import Envio
 # Create your models here.
 
 class Inspeccion(models.Model):#6
-    envio = models.ForeignKey(Envio, on_delete=models.CASCADE)
-    fecha_inspeccion = models.DateTimeField(auto_now_add=True)
-    resultado = RichTextField()
+    envio = models.ForeignKey(Envio, on_delete=models.CASCADE, blank=False)
+    fecha_inspeccion = models.DateTimeField(auto_now_add=True, blank=False)
+    resultado = RichTextField( blank=False)
     
     class Meta:
         db_table = 'Inspeccion'

@@ -11,6 +11,7 @@ urlpatterns = [
     path('envio/', include('envio_03.urls'), name='envio'), 
     path('conductor/', include('conductor_04.urls'), name='conductor'), 
     path('inspeccion/', include('inspeccion_05.urls'), name='inspeccion'),
-    path('img/', include('inspeccion_05.urls')),
+    path('estadisticas/', include('estadisticas_06.urls'), name='estadisticas'),
+   
 ]
 urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

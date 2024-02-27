@@ -5,11 +5,11 @@ from destino_02.models import Destino
 # Create your models here.
 
 class Envio(models.Model):#4
-    mineral = models.ForeignKey(Mineral, on_delete=models.CASCADE)
-    transporte = models.ForeignKey(Transporte, on_delete=models.CASCADE)
-    destino = models.ForeignKey(Destino, on_delete=models.CASCADE)
-    fecha_envio = models.DateTimeField(auto_now_add=True)
-    cantidad_mineral = models.DecimalField(max_digits=5, decimal_places=2)
+    mineral = models.ForeignKey(Mineral, on_delete=models.CASCADE, blank=False)
+    transporte = models.ForeignKey(Transporte, on_delete=models.CASCADE , blank=False)
+    destino = models.ForeignKey(Destino, on_delete=models.CASCADE, blank=False)
+    fecha_envio = models.DateTimeField(auto_now_add=True, blank=False)
+    cantidad_mineral = models.DecimalField(max_digits=5, decimal_places=2, blank=False)
     
     class Meta:
         db_table = 'Envio'

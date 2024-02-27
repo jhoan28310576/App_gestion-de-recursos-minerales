@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'envio_03',
     'conductor_04',
     'inspeccion_05',
+    'estadisticas_06',
     'ckeditor'
 ]
 

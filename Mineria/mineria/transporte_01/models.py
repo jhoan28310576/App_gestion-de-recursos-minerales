@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Transporte(models.Model):#2 
-    matricula = models.CharField(max_length=200)
-    tipo_transporte = models.CharField(max_length=200)
-    capacidad_carga = models.DecimalField(max_digits=5, decimal_places=2)
-    fecha_mantenimiento = models.DateField()
+    matricula = models.CharField(max_length=200, blank=False)
+    tipo_transporte = models.CharField(max_length=200, blank=False )
+    capacidad_carga = models.DecimalField(max_digits=5, decimal_places=2, blank=False)
+    fecha_mantenimiento = models.DateField(blank=False)
     
     class Meta:
         db_table = 'Transporte'

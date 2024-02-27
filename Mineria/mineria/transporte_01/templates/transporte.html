@@ -15,7 +15,7 @@ Transporte
 
 <!-- Inicio de la tarjeta -->
 <div class="card_form">
-    <form method="POST">
+    <form method="POST" id="transporteForm">
         {% csrf_token %}
         {% for field in transportes %}
         <br>
@@ -26,7 +26,7 @@ Transporte
             <small id="{{ field.id_for_label }}Help" class="form-text text-muted">{{ field.help_text }}</small>
             {% endif %}
             {% for error in field.errors %}
-            <div class="alert alert-danger">{{ error }}</div>
+            <div class="alert alert-danger error-message" style="display: none;">{{ error }}</div>
             {% endfor %}
         </div>
         <br>
@@ -40,3 +40,4 @@ Transporte
 <br>
 
 {% endblock %}
+
