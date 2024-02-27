@@ -3,8 +3,12 @@ from .forms import Envioform
 from  django.contrib import messages
 # Create your views here
 def envio(request):
-    envio = Envioform(request.POST or None)
-    if envio.is_valid():
-        envio.save()
+    if request.method == 'POST':
+        envio = Envioform(request.POST)
+        if envio.is_valid():
+            envio.save()
         messages.success(request, 'Envio guardado con exito')
+        envio  = Envioform(request.POST)
+    else:
+        envio = Envioform()
     return render(request,'envio.html',{"envios":envio})

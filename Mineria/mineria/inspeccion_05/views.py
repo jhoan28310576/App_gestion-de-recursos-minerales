@@ -4,8 +4,12 @@ from django.contrib import messages
 
 # Create your views here.
 def inspeccion(request):
-    inspeccion = InspeccionForm (request.POST or None)
-    if inspeccion.is_valid():
-        inspeccion.save()
+    if request.method == 'POST':
+        inspeccion = InspeccionForm (request.POST)
+        if inspeccion.is_valid():
+            inspeccion.save()
         messages.success(request, 'Inspeccion guardado con exito')
+        inspeccion = InspeccionForm()
+    else:
+        inspeccion = InspeccionForm()
     return render(request,'inspeccion.html',{'inspecciones':inspeccion})

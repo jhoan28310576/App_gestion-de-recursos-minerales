@@ -3,8 +3,12 @@ from .forms import Destinoform
 from  django.contrib import messages
 # Create your views here
 def destino(request):
-    destino = Destinoform(request.POST or None)
-    if destino.is_valid():
-        destino.save()
+    if request.method == 'POST':
+        destino = Destinoform(request.POST)
+        if destino.is_valid():
+            destino.save()
         messages.success(request, 'Destino guardado con exito')
+        destino = Destinoform(request.POST)
+    else:
+        destino = Destinoform()   
     return render(request,'destino.html',{"destinos":destino})
