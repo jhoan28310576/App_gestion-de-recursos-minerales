@@ -17,6 +17,15 @@
      box-shadow: 0 0 10px #ccc;
 }
 
+.form-label {
+     display: block;
+ }
+ 
+.wide {
+     width: 100px;  /* Cambia esto al ancho que desees */
+ }
+
+
 .btn-centrado {
      display: block;
      margin-left: auto;

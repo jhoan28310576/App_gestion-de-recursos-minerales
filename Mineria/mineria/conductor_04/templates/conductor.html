@@ -1,15 +1,45 @@
-
 {% extends "base.html" %}
 
 {% block title %}
-Mi Página
+Conductor
 {% endblock %}
 
 {% block content %}
+<br>
 
-    <section>
-        <button class="btn btn-primary">Un botón</button>
-    </section>
-   
+<div class="container marketing">
+{% if messages %}
+    {% for message in messages %}
+        <script>alert("{{ message }}");</script>
+    {% endfor %}
+{% endif %}
+
+<!-- Inicio de la tarjeta -->
+<div class="card_formDestino">
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in conductores %}
+        <br>
+        <br>
+        <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.help_text %}
+            <small id="{{ field.id_for_label }}Help" class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {% for error in field.errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <br>
+        <br>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-centrado">Guardar</button>
+    </form>
+    
+</div>
+<!-- Fin de la tarjeta -->
+</div>
+<br>
 
 {% endblock %}
