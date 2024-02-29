@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{%block title %}
+Lista de Mineria
+{% endblock %}
+
+{% block content %}
+<br>
+
+<div class="container" style="border: 1px solid #000; border-radius: 10px;">
+    {%for minerales in mineral%}
+        <div class="row border-bottom py-2">
+            <div class="col">
+                <p>{{ minerales.nombre }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No hay minerales para mostrar.</p>
+    {% endfor %}
+</div>
+<br>
+{% endblock %}
+

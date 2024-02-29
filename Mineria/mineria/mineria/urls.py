@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin_site.urls),
     path('', include('gestion.urls'), name='index'),  
     path('mineral_create_view/', include('mineria_00.urls'), name='mineral_create_view'), 
+    path('mineria/', include('mineria_00.urls')),  
     path('transporte/', include('transporte_01.urls'), name='transporte'), 
     path('destino/', include('destino_02.urls'), name='destino'), 
     path('envio/', include('envio_03.urls'), name='envio'), 
