@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}
+Eliminar Mineral
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro de que quieres eliminar {{ mineral.nombre }}?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+</div>
+{% endblock %}

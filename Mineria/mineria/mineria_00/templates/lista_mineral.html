@@ -12,12 +12,26 @@ Lista de Mineria
         <div class="row border-bottom py-2">
             <div class="col">
                 <p>{{ minerales.nombre }}</p>
-            </div>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ minerales.id }}"> Eliminar</button>
+
+                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#infoModal" data-id="{{ minerales.id }}" onclick="loadMineralDetails({{ minerales.id }})">Ver Información</button>
+
+                
+
+              </div>
         </div>
     {% empty %}
         <p>No hay minerales para mostrar.</p>
     {% endfor %}
 </div>
-<br>
+<br> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  function loadMineralDetails(id) {
+      $('#infoModal').load('mineral/mineral_detail/' + id + '/');
+  }
+</script>
+  
 {% endblock %}
 
