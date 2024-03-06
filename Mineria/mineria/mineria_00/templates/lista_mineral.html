@@ -12,12 +12,13 @@ Lista de Mineria
         <div class="row border-bottom py-2">
             <div class="col">
                 <p>{{ minerales.nombre }}</p>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ minerales.id }}"> Eliminar</button>
+                <div class="text-end">
+                    
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#infoModal" data-id="{{ minerales.id }}" onclick="loadMineralDetails({{ minerales.id }})">Ver Información</button>
 
-                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#infoModal" data-id="{{ minerales.id }}" onclick="loadMineralDetails({{ minerales.id }})">Ver Información</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="{{ minerales.id }}"  onclick="deleteMineral({{ minerales.id }})"> Eliminar</button>
 
-                
-
+                </div>
               </div>
         </div>
     {% empty %}
@@ -25,13 +26,36 @@ Lista de Mineria
     {% endfor %}
 </div>
 <br> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script>
-  function loadMineralDetails(id) {
-      $('#infoModal').load('mineral/mineral_detail/' + id + '/');
-  }
+    function deleteMineral(id) {
+        if (id) {
+          $('#mineralId').val(id);
+          $('#deleteModal').modal('show');
+        }
+    }
+    
+    $(document).ready(function() {
+        $('#deleteForm').on('submit', function(e) {
+          e.preventDefault();
+          var id = $('#mineralId').val();  
+          $.ajax({
+            url: '/mineria/delete_mineral/',
+            data: {
+              'id': id
+            },
+            dataType: 'json',
+            success: function (data) {
+              if (data.success) {
+                $('#deleteModal').modal('hide');
+                location.reload(true); 
+              }
+            }
+          });
+        }); 
+    });
 </script>
-  
+    
+
+
 {% endblock %}
 

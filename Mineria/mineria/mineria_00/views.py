@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .forms  import Mineralform 
 from .models import Mineral
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
 
 
 # Create your views here.
@@ -11,24 +12,15 @@ def mineral_list_view (request):
     mineral = Mineral.objects.all()
     return render(request,'lista_mineral.html', {'mineral': mineral})
 
-'''def mineral_detail(request, pk):
-    mineral = Mineral.objects.get(pk=pk)
-    data = {
-        'nombre': mineral.nombre,
-        'lugar_extraccion': mineral.lugar_extraccion,
-        'peso': str(mineral.peso),
-        'pureza': str(mineral.pureza),
-    }
-    return JsonResponse(data)'''
-
-from django.shortcuts import get_object_or_404
-
+def load_mineral_details(request):
+    mineral_id = request.GET.get('id')
+    mineral = Mineral.objects.get(id=mineral_id)
+    data = {'nombre': mineral.nombre, 'lugar_extraccion': mineral.lugar_extraccion, 'peso': mineral.peso, 'pureza': mineral.pureza}
+    return JsonResponse(data)
 
 def mineral_detail(request, id):
     mineral = get_object_or_404(Mineral, id=id)
     return render(request, 'mineral_detail.html', {'mineral': mineral})
-
-
 
 def mineral_create_view (request):
     if request.method == 'POST':
@@ -42,14 +34,8 @@ def mineral_create_view (request):
     return render(request, 'mineria.html', {'form': form})
 
 #eliminar, funcion solucionar luego
-def mineral_delete_view(request, id):
-    data = dict()
-    mineral = get_object_or_404(Mineral, id=id)
-    if request.method == 'POST':
-        mineral.delete()
-        data ['deleted'] = True
-        messages.success(request, 'Mineral eliminado con éxito')
-    else:
-        data['deleted'] = False
-    
+def delete_mineral(request):
+    mineral_id = request.GET.get('id')
+    Mineral.objects.filter(id=mineral_id).delete()
+    data = {'success': True}
     return JsonResponse(data)

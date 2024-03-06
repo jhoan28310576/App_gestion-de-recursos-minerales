@@ -7,8 +7,8 @@
     <title>{% block title %} Título de la página {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/personalisado.css' %}">
-    
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     
 </head>
 <body>
@@ -68,7 +68,7 @@
         {% endblock %}
     </main>
 
-    <!-- Modal -->
+   <!-- Modal elminar -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -81,10 +81,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <form action="" method="POST" id="deleteForm">
+          <form action="/mineria/delete_mineral/" method="POST" id="deleteForm">
             {% csrf_token %}
+            <input type="hidden" id="mineralId" name="mineralId">
             <button type="submit" class="btn btn-danger">Eliminar</button>
-          </form>
+          </form>          
         </div>
       </div>
     </div>
@@ -102,6 +103,7 @@
                 <!-- Aquí se mostrará la información específica del mineral -->
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modificar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
