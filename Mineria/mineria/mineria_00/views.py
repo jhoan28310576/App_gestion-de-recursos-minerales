@@ -1,3 +1,4 @@
+from django.views import View
 from django.http import JsonResponse
 from django.shortcuts import render
 from .forms  import Mineralform 
@@ -34,8 +35,8 @@ def mineral_create_view (request):
     return render(request, 'mineria.html', {'form': form})
 
 #eliminar, funcion solucionar luego
-def delete_mineral(request):
-    mineral_id = request.GET.get('id')
-    Mineral.objects.filter(id=mineral_id).delete()
-    data = {'success': True}
-    return JsonResponse(data)
+class DeleteMineralView(View):
+    def delete(self, request, *args, **kwargs):
+        mineral = Mineral.objects.get(pk=self.kwargs['id'])
+        mineral.delete()
+        return JsonResponse({'success': True})

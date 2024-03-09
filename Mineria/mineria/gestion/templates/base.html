@@ -7,6 +7,7 @@
     <title>{% block title %} Título de la página {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/personalisado.css' %}">
+    <script src="{% static 'js/personalizado.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     
@@ -68,38 +69,36 @@
         {% endblock %}
     </main>
 
-   <!-- Modal elminar -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <!-- Modal para confirmar eliminación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Eliminar Mineral</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="deleteModalBody">
+                ¿Estás seguro de que quieres eliminar este mineral?
+                <input type="hidden" id="csrf" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+            </div>
         </div>
-        <div class="modal-body">
-          ¿Estás seguro de que quieres eliminar este mineral?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <form action="/mineria/delete_mineral/" method="POST" id="deleteForm">
-            {% csrf_token %}
-            <input type="hidden" id="mineralId" name="mineralId">
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-          </form>          
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
 <!-- Modal para mostrar información -->
-<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Información del Mineral</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="infoModalBody">
                 <!-- Aquí se mostrará la información específica del mineral -->
             </div>
             <div class="modal-footer">
@@ -111,9 +110,12 @@
 </div>
 
 
-<footer style="background-color: #f8f8f8; padding: 20px; text-align: center;">
+<footer>
     <p style="color: #333; font-size: 14px;">© 2024 Mi Sitio Web. Todos los derechos reservados.</p>
 </footer>
+
+
+
 <!-- JS de Bootstrap -->
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/personalizado.js' %}"></script>

@@ -1,5 +1,8 @@
+import os
 from django.core.management.base import BaseCommand
-from .models import Mineral
+from mineria_00.models import Mineral
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mineria.settings'
 
 class Command(BaseCommand):
     help = 'Inserta datos en la base de datos'
@@ -18,8 +21,6 @@ class Command(BaseCommand):
             {'nombre': 'Industriales', 'lugar_extraccion': 'Lugar2', 'peso': 2.34, 'pureza': 0.97},
             {'nombre': 'Metálicos', 'lugar_extraccion': 'Lugar2', 'peso': 2.14, 'pureza': 0.77},
             {'nombre': 'piedras', 'lugar_extraccion': 'Lugar2', 'peso': 2.74, 'pureza': 0.87},
-            
-
             # Agrega más datos según sea necesario
         ]
 
