@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Lista de Destino
+{% endblock %} 
+
+{% block content %}
+<div>
+    <iframe src="/static/grafico/mi_grafico_destino.html" width="90%" height="600"></iframe>
+  </div>
+
+  <div class="container" style="border: 1px solid #000; border-radius: 10px;">
+    {% for destinos in destino %}
+      <div class="row border-bottom py-2 align-items-center">
+        <div class="col">
+          <p class="d-inline-block mb-0">{{ destinos.estado }}</p>
+          <div class="d-inline-block float-end">
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#infoModal" data-id="{{ Transportes.id }}" onclick="loadMineralDetails({{ Transportes.id }})">Ver Información</button>
+
+            <button type="button" class="btn btn-danger delete-btn" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" data-id="{{ Transportes.id }}">Eliminar</button>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>No hay destinos para mostrar.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
