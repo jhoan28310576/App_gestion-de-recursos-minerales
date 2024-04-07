@@ -5,8 +5,12 @@ Lista de Mineria
 {% endblock %}
 
 {% block content %}
+
+
 <br>
+<div>
   <iframe src="/static/grafico/mi_grafico.html" width="100%" height="600"></iframe>
+</div>
 <br>
 
 <div class="container" style="border: 1px solid #000; border-radius: 10px;">
@@ -26,7 +30,53 @@ Lista de Mineria
       <p>No hay minerales para mostrar.</p>
   {% endfor %}
 </div>
+
+
+
 <br>
+
+   <!-- Modal para confirmar eliminación -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="deleteModalBody">
+                ¿Estás seguro de que quieres eliminar este mineral?
+                <input type="hidden" id="csrf" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteButton">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para mostrar información -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Información del Mineral</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="infoModalBody">
+                <!-- Aquí se mostrará la información específica del mineral -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modificar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- js -->
 <script>
   function loadMineralDetails(id) {
     $.ajax({
