@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import Envioform
 from .models import Envio
 from django.http import JsonResponse
+from django.views import View
 from django.core.serializers import serialize
 from django.core.serializers.json import DjangoJSONEncoder
 from  django.contrib import messages
@@ -40,3 +41,10 @@ def load_envio_details(request):
     }
     
     return JsonResponse(data)
+
+class DeleteenvioView(View):
+    def delete(self, request, *args, **kwargs):
+        envio = Envio.objects.get(pk=self.kwargs['id'])
+        envio.delete()
+        return JsonResponse({'success': True})
+

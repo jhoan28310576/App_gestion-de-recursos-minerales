@@ -78,5 +78,67 @@
         }
       })
     }
+    
+    // function para eliminar dsde aquipra abajo
+    $(document).ready(function () {
+      // Obtiene el token CSRF de las cookies
+      var csrftoken = getCookie('csrftoken')
+    
+      $('.delete-btn').click(function () {
+        var id = $(this).data('id') // Obtiene el id del botón de eliminar
+        $('#confirmDeleteButton').data('id', id) // Guarda el id en el botón de confirmación
+      })
+    
+      $('#confirmDeleteButton').click(function () {
+        var id = $(this).data('id')
+        confirmDelete(id)
+      })
+    
+      function confirmDelete(id) {
+        $.ajax({
+          url: '/envio/delete_envio/' + id,
+          type: 'DELETE',
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRFToken', csrftoken)
+          },
+          success: function (result) {
+            // Recarga la página o actualiza la lista de minerales
+            location.reload()
+          }
+        })
+      }
+    
+      // Función para obtener una cookie por su nombre
+      function getCookie(name) {
+        var cookieValue = null
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';')
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i])
+            // ¿El cookie comienza con el nombre que queremos?
+            if (cookie.substring(0, name.length + 1) === name + '=') {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+              break
+            }
+          }
+        }
+        return cookieValue
+      }
+    
+      $('#infoModal').on('hidden.bs.modal', function (e) {
+        $.ajax({
+          url: '/envio/listar',
+          type: 'GET',
+          success: function (result) {
+            // Actualiza el HTML de tu página con la nueva lista de transportes
+            $('#id_de_tu_lista_de_envio').html(result)
+          }
+        })
+      })
+    
+      $('#confirmDeleteModal').on('show.bs.modal', function (e) {
+        $('#deleteModalBody').html('¿Estás seguro de que quieres eliminar este envio?')
+      })
+    })
   </script>
 {% endblock %}

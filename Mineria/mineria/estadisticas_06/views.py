@@ -73,5 +73,3 @@ def estadisticas(request):
         fig6.write_html(('static/grafico/mi_grafico_Inspeccion.html'))
     
     return render(request, 'estadisticas.html')
-
-
