@@ -2,6 +2,7 @@ from django.shortcuts import render
 from.forms import Conductorform
 from django.contrib import messages
 from .models import Conductor
+from django.http import JsonResponse
 
 # Create your views here.
 def conductor(request):
@@ -18,3 +19,9 @@ def conductor(request):
 def conductor_list_view(request):
     conductor = Conductor.objects.all()
     return render(request, 'listar_conductores.html',{'conductor': conductor})
+
+def load_conductor_details(request):
+    conductor_id = request.GET.get('id')
+    conductor  = Conductor.objects.get(id=conductor_id)
+    data  = {'nombre': conductor.nombre, 'licencia': conductor.licencia, 'transporte': conductor.transporte.matricula }
+    return JsonResponse(data)

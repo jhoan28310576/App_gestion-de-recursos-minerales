@@ -1,0 +1,15 @@
+{%extends "base.html"%}
+
+
+{%block title %}
+Lista de conductor
+{% endblock %}
+
+{% block content %}
+
+<h1>Información del conductor</h1>
+<p>nombre: {{ conductor.nombre }}</p>
+<p>licencia: {{ conductor.licencia }}</p>
+<p>transporte: {{ conductor.transporte }}</p>
+
+{% endblock %}

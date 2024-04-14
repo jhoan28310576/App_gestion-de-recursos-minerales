@@ -25,4 +25,53 @@
       <p>No hay conductores para mostrar.</p>
     {% endfor %}
   </div>
+
+  <!-- Modal para mostrar información -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Información del conductor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="infoModalBody">
+          <!-- Aquí se mostrará la información específica del conductor -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Modificar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function loadMineralDetails(id) {
+      $.ajax({
+        url: '/conductor/load_conductor_details/',
+        data: {
+          id: id
+        },
+        dataType: 'json',
+        success: function (data) {
+          $('#infoModalBody').html('<p>nombre: ' + data.nombre + '</p><p>licencia: ' + data.licencia + '</p><p>transporte: ' + data.transporte +'</p>')
+          $('#infoModal').modal('show')
+        }
+      })
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
