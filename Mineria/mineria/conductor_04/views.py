@@ -3,6 +3,7 @@ from.forms import Conductorform
 from django.contrib import messages
 from .models import Conductor
 from django.http import JsonResponse
+from django.views import View 
 
 # Create your views here.
 def conductor(request):
@@ -25,3 +26,9 @@ def load_conductor_details(request):
     conductor  = Conductor.objects.get(id=conductor_id)
     data  = {'nombre': conductor.nombre, 'licencia': conductor.licencia, 'transporte': conductor.transporte.matricula }
     return JsonResponse(data)
+
+class DeleteconductorView(View):
+    def delete(self, request, *args, **kwargs):
+        conductorDelete = Conductor.objects.get(pk=self.kwargs['id'])
+        conductorDelete.delete()
+        return JsonResponse({'success': True})

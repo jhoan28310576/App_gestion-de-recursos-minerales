@@ -66,8 +66,15 @@
                                 <li><a class="dropdown-item" href="{% url 'envio'%}">Crear envio</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'conductor' %}">Conductor</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Conductor
+                            </a>
+                            <!-- se modifico esta  parte  registar en el doc-->
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'conductor_list_view'%}">Listar conductor</a></li>
+                                <li><a class="dropdown-item" href="{% url 'conductor'%}">Crear conductor</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'inspeccion' %}">Inspeccion</a>
