@@ -11,17 +11,29 @@
 
   <!-- Three columns of text below the carousel -->
   <div class="container">
-    <div class="row justify-content-center">
+    <div id="gestionCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
         {% for gestions in gestion %}
-            <div class="col-lg-4 text-center">
-                <img class="rounded-circle" src="{{ gestions.image.url }}" alt="Imagen" width="140" height="140">
-                <h2>{{ gestions.title }}</h2>
-                <p>{{ gestions.description|safe|truncatewords:10 }}</p>
-                <p><a class="btn btn-secondary" href="#" role="button">Ver detalles »</a></p>
-            </div><!-- /.col-lg-4 -->
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="text-center">
+              <img class="rounded-circle" src="{{ gestions.image.url }}" alt="Imagen" width="140" height="140">
+              <h2>{{ gestions.title }}</h2>
+              <p>{{ gestions.description|safe|truncatewords:10 }}</p>
+              <p><a class="btn btn-secondary" href="#" role="button">Ver detalles »</a></p>
+            </div>
+          </div>
         {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#gestionCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#gestionCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
     </div>
-</div>
+  </div>
 
   <!-- START THE FEATURETTES -->
  <hr class="featurette-divider">
